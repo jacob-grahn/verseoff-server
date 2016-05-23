@@ -1,7 +1,8 @@
 /* @flow */
 
-import _ from 'lodash'
+const _ = require('lodash');
 import type { User } from './user'
+const LobbyModel = require('./models/Lobby.js');
 
 // weights for competing goals
 const wantFullRoom = 100;
@@ -15,18 +16,26 @@ const fullRoom = 10;
 
 class Lobby {
 
-  name: string;
-  users: Array<User>;
+  id: string;
 
-  constructor(name: string = 'default'): void {
-    this.name = name
+  constructor(id: string = 'default'): void {
+    this.id = id
   }
 
   addUser(user: User): void {
-    this.users.push(user)
+    LobbyModel.get(this.id)('members').append(user).run()
   }
 
   removeUser(user: User): void {
+    //LobbyModel.get(this.id)('members').
+
+    /*r.table('30848200').get(1).update(function (row)  {
+      return {
+        'things': row('things')
+          .filter(function (item) { return item('name').ne('b') })
+      }
+    })*/
+
     _.remove(this.users, memberUser => memberUser.id === user.id)
   }
 

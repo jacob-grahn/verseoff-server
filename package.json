@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Jiggmin/verseoff-server#readme",
   "dependencies": {
-    "lodash": "^4.12.0"
+    "lodash": "^4.12.0",
+    "thinky": "^2.3.2"
   }
 }
