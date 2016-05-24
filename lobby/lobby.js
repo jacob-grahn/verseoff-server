@@ -23,20 +23,11 @@ class Lobby {
   }
 
   addUser(user: User): void {
-    LobbyModel.get(this.id)('members').append(user).run()
+    LobbyModel.addUser(this.id, user.id);
   }
 
   removeUser(user: User): void {
-    //LobbyModel.get(this.id)('members').
-
-    /*r.table('30848200').get(1).update(function (row)  {
-      return {
-        'things': row('things')
-          .filter(function (item) { return item('name').ne('b') })
-      }
-    })*/
-
-    _.remove(this.users, memberUser => memberUser.id === user.id)
+    LobbyModel.removeUser(this.id, user.id);
   }
 
 }

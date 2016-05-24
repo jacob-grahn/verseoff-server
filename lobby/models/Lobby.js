@@ -11,4 +11,18 @@ const Lobby = thinky.createModel("Lobby", {
     }]
 }).removeExtra();
 
+Lobby.addMember = (lobbyId: string, userId: string) => {
+  Lobby.get(lobbyId)('members').append(user).run()
+}
+
+Lobby.removeMember = (lobbyId: string, userId: string) => {
+  Lobby.get(lobbyId).update(row => {
+    return {
+      'members': row('members').filter(item => {
+        return item('id').ne(userId)
+      })
+    }
+  })
+}
+
 module.exports = Lobby;
